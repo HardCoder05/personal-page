@@ -1,0 +1,58 @@
+---
+// @ts-ignore
+import { Icon } from "astro-icon";
+
+const features = [
+  {
+    title: "Personalización Avanzada",
+    icon: "bx:bxs-window-alt",
+  },
+  {
+    title: "Diseños Responsivos",
+    icon: "bx:bxs-mobile",
+  },
+  {
+    title: "Optimización SEO",
+    icon: "bx:bxs-file-find",
+  },
+  {
+    title: "Seguridad Reforzada",
+    icon: "bx:bxs-lock",
+  },
+
+  {
+    title: "Integración con Redes Sociales",
+    icon: "bx:bxs-share-alt",
+  },
+  {
+    title: "Análisis y Estadísticas Detalladas",
+    icon: "bx:bxs-bar-chart-alt-2",
+  },
+];
+---
+
+<div class="place-items-center mt-24">
+  <h2 class="text-4xl font-bold">Beneficios de trabajar conmigo</h2>
+  <p class="text-lg mt-4 font-normal text-slate-600">
+    Obtendrás un sitio web adaptado a tus necesidades, diseñado para
+    destacar y atraer a tus clientes ideales. Mi compromiso es ofrecer
+    soluciones tecnológicas que no solo mejoran la apariencia de tu
+    web, sino que también optimizan su rendimiento en todos los dispositivos,
+    asegurando una experiencia fluida para tus usuarios.
+  </p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-16 gap-16">
+  {
+    features.map((item) => (
+      <div class="flex flex-col gap-4 items-center justify-center">
+        <div class="mt-1 bg-black rounded-full p-2 w-14 h-14 shrink-0">
+          <Icon class="text-white" name={item.icon} />
+        </div>
+        <div>
+          <h3 class="font-medium text-lg text-center">{item.title}</h3>
+        </div>
+      </div>
+    ))
+  }
+</div>
