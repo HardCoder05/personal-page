@@ -1,0 +1,18 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+import Projects from "@components/projects.astro";
+---
+
+<Layout title="Portfolio" description="Proyectos que he desarrollado">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">Casos de Éxito</Fragment>
+      <Fragment slot="desc"
+        >Proyectos que he desarrollado</Fragment
+      >
+    </Sectionhead>
+    <Projects />
+  </Container>
+</Layout>

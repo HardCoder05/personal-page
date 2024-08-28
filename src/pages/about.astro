@@ -1,0 +1,71 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+---
+
+<Layout title="About" description="Sobre mí">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">Sobre mí</Fragment>
+      <Fragment slot="desc">Convierto ideas en realidad.</Fragment>
+    </Sectionhead>
+
+    <div class="flex flex-col gap-3 mx-auto max-w-4xl mt-16">
+      <h2 class="font-bold text-3xl text-gray-800">
+        ¿Qué me distingue de otros desarrolladores?
+      </h2>
+      <p class="text-lg text-slate-500">
+        Mi compromiso es superar tus expectativas en cada proyecto, entregando
+        resultados de alta calidad con una dedicación excepcional y una atención
+        a los detalles.
+      </p>
+    </div>
+    <div
+      class="flex justify-center items-center gap-10 mx-auto max-w-4xl mt-12">
+      <div class="group">
+        <div class="w-full aspect-square">
+          <img
+            src="/img/about-us.jpg"
+            alt="imagen de leodev"
+            width="350"
+            class="rounded-md group:shadow-xl bg-white object-cover object-center aspect-square"
+          />
+        </div>
+
+        <div class="mt-4 text-center grid gap-y-1">
+          <h2 class="text-lg text-gray-800">Leonardo Rico</h2>
+          <h3 class="text-xs text-slate-400">Desarrollador Web Frontend</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-3 mx-auto max-w-4xl mt-16">
+      <h2 class="font-bold text-3xl text-gray-800">Preguntas y Respuestas</h2>
+
+      <h3
+        class="flex items-center justify-between w-full py-5 font-medium rtl:text-right text-gray-800 border-b border-gray-200 gap-3">
+        ¿Qué servicios de desarrollo web ofreces y cómo pueden ayudar a mi
+        negocio a crecer?
+      </h3>
+      <p class="mb-2 text-gray-500">
+        Me especializo en desarrollar sitios web personalizados que se adaptan a
+        las necesidades específicas de tu negocio. Propongo un enfoque en el
+        diseño atractivo y la funcionalidad óptima, con el objetivo de potenciar
+        tu presencia digital, atrayendo más clientes.
+      </p>
+      <h3
+        class="flex items-center justify-between w-full py-5 font-medium rtl:text-right text-gray-800 border-b border-gray-200 gap-3">
+        ¿Qué diferencias hay entre un sitio web desarrollado por ti y uno creado
+        con una plantilla estándar?
+      </h3>
+      <p class="mb-2 text-gray-500">
+        Mi enfoque se centra en crear experiencias únicas y personalizadas. Cada
+        proyecto es diseñado con una visión única, reflejando fielmente tus
+        ideas y necesidades. A diferencia de las plantillas estándar que a
+        menudo resultan en sitios web genéricos, mis proyectos ofrecen una
+        alineación total con los objetivos de tu negocio.
+      </p>
+    </div>
+  </Container>
+</Layout>
