@@ -1,0 +1,42 @@
+---
+import Contactform from "@components/contactform.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+import Layout from "@layouts/Layout.astro";
+import { Icon } from "astro-icon";
+---
+
+<Layout title="Contacto" description="Solicite una reunión o una cotización">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">Contacto</Fragment>
+      <Fragment slot="desc">Solicite una reunión o una cotización</Fragment>
+    </Sectionhead>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mx-auto max-w-4xl mt-16">
+      <div>
+        <h2 class="font-medium text-2xl text-gray-800">
+          Informacion de contacto:
+        </h2>
+        <p class="text-lg leading-relaxed text-slate-500 mt-3">
+          ¿Tiene alguna duda? Rellene el formulario y me pondré en contacto con
+          usted lo antes posible.
+        </p>
+        <div class="mt-5">
+          <div class="flex items-center mt-2 space-x-2 text-gray-600">
+            <Icon class="text-gray-400 w-6 h-6" name="uil:map-marker" />
+            <span>Perú, Lima</span>
+          </div>
+          <div class="flex items-center mt-2 space-x-2 text-gray-600">
+            <Icon class="text-gray-400 w-6 h-6" name="uil:envelope" /><a
+              href="mailto:rio88920@gmail.com">rio88920@gmail.com</a
+            >
+          </div>
+        </div>
+      </div>
+      <div>
+        <Contactform />
+      </div>
+    </div>
+  </Container>
+</Layout>
