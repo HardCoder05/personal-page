@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import animations from "@midudev/tailwind-animations"
+
 const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
   content: [
@@ -12,5 +14,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@tailwindcss/typography", "flowbite/plugin")],
+  plugins: [require("@tailwindcss/typography", "flowbite/plugin"), animations],
 };
