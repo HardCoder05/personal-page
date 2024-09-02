@@ -2,17 +2,27 @@
 import Button from "./ui/button.astro";
 ---
 
-<form id="contactForm" class="needs-validation" novalidate>
+<form
+  action="https://api.web3forms.com/submit"
+  method="POST"
+  id="form"
+  class="needs-validation"
+  data-astro-reload
+  novalidate>
+  <input type="hidden" name="access_key" value="30b18a00-de02-4244-9133-0302df417f9d" />
+
+  <input type="checkbox" class="hidden" style="display:none" name="botcheck" />
   <div class="mb-5">
     <input
       type="text"
       placeholder="Nombre completo"
       required
-      class="w-full px-4 py-3 border-2 placeholder:text-gray-800 rounded-md outline-none focus:ring-4 border-gray-300 focus:border-gray-600 ring-gray-100"
+      class="w-full px-4 py-3 border-2 placeholder:text-gray-800 rounded-md outline-none focus:ring-4
+        border-gray-300 focus:border-gray-600 ring-gray-100"
       name="name"
     />
     <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">
-      Por favor escribe tu nombre
+      Por favor ingrese su nombre
     </div>
   </div>
   <div class="mb-5">
@@ -20,16 +30,17 @@ import Button from "./ui/button.astro";
     <input
       id="email_address"
       type="email"
-      placeholder="Correo"
+      placeholder="Correo electrónico"
       name="email"
       required
-      class="w-full px-4 py-3 border-2 placeholder:text-gray-800 rounded-md outline-none focus:ring-4 border-gray-300 focus:border-gray-600 ring-gray-100"
+      class="w-full px-4 py-3 border-2 placeholder:text-gray-800 rounded-md outline-none focus:ring-4
+        border-gray-300 focus:border-gray-600 ring-gray-100"
     />
     <div class="empty-feedback text-red-400 text-sm mt-1">
-      Escribe un correo electrónico
+      Escribe tu correo electrónico
     </div>
     <div class="invalid-feedback text-red-400 text-sm mt-1">
-      Correo electrónico inválido
+      Por favor ingrese un correo electrónico válido
     </div>
   </div>
   <div class="mb-3">
@@ -37,10 +48,11 @@ import Button from "./ui/button.astro";
       name="message"
       required
       placeholder="Mensaje"
-      class="w-full px-4 py-3 border-2 placeholder:text-gray-800 rounded-md outline-none h-36 focus:ring-4 border-gray-300 focus:border-gray-600 ring-gray-100"
+      class="w-full px-4 py-3 border-2 placeholder:text-gray-800 rounded-md outline-none h-36 focus:ring-4
+        border-gray-300 focus:border-gray-600 ring-gray-100"
     ></textarea>
     <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">
-      Por favor coloca un mensaje
+      Por favor ingrese un mensaje
     </div>
   </div>
   <Button type="submit" size="lg" block>Enviar</Button>
@@ -67,51 +79,58 @@ import Button from "./ui/button.astro";
   }
 </style>
 
-<script>
-  import emailjs from "@emailjs/browser"
+<script is:inline>
+  document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+      const form = document.getElementById("form");
+      const result = document.getElementById("result");
 
-  const form = document.getElementById("contactForm") as HTMLFormElement;
-  const result = document.getElementById("result") as HTMLDivElement;
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    form.classList.add("was-validated");
-    if (!form.checkValidity()) {
-      form.querySelectorAll(":invalid")[0].focus();
-      return;
-    }
-    
-    const formData = new FormData(form);
-    const serviceID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID;
-    const templateID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID;
-    const userID = import.meta.env.PUBLIC_EMAILJS_USER_ID;
-
-    result.innerHTML = "Enviando...";
-
-    emailjs.sendForm(serviceID, templateID, form, userID)
-      .then((response) => {
-        if (response.status == 200) {
-          result.classList.add("text-green-500");
-          result.innerHTML = "¡Mensaje enviado exitosamente!";
-        } else {
-          result.classList.add("text-red-500");
-          result.innerHTML = "Hubo un error al enviar el mensaje.";
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        form.classList.add("was-validated");
+        if (!form.checkValidity()) {
+          form.querySelectorAll(":invalid")[0].focus();
+          return;
         }
-      })
-      .catch((error) => {
-        console.log("Error:", error);
-        result.classList.add("text-red-500");
-        result.innerHTML = "Algo salió mal. Inténtelo de nuevo.";
-      })
-      .finally(() => {
-        form.reset();
-        form.classList.remove("was-validated");
-        setTimeout(() => {
-          result.style.display = "none";
-        }, 5000);
+        const formData = new FormData(form);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+
+        result.innerHTML = "Enviando...";
+
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: json,
+        })
+          .then(async (response) => {
+            let json = await response.json();
+            if (response.status == 200) {
+              result.classList.add("text-green-500");
+              result.innerHTML = json.message;
+            } else {
+              console.log(response);
+              result.classList.add("text-red-500");
+              result.innerHTML = json.message;
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            result.innerHTML = "Algo salió mal!";
+          })
+          .then(function () {
+            form.reset();
+            form.classList.remove("was-validated");
+            setTimeout(() => {
+              result.style.display = "none";
+            }, 5000);
+          });
       });
-  });
-
-  emailjs.init(import.meta.env.PUBLIC_EMAILJS_USER_ID);
+    },
+    { once: true }
+  );
 </script>
-
