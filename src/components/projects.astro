@@ -1,7 +1,11 @@
-<div class="grid grid-cols-1 gap-10 mx-auto max-w-2xl mt-16">
+---
+import { Icon } from "astro-icon";
+---
+
+<section class="grid grid-cols-1 gap-10 mx-auto max-w-2xl mt-16">
   <div class="grid items-center">
     <a
-      href="https://www.teamjebus.com.ar/"
+      href="#"
       target="_blank"
       referrerpolicy="no-referrer"
       class="p-6 bg-white border border-gray-300 rounded-lg shadow hover:bg-gray-100">
@@ -9,9 +13,9 @@
         class="relative mx-auto border-gray-900 bg-gray-900 border-[8px] rounded-t-xl h-[172px] max-w-[301px] md:h-[294px] md:max-w-[512px]">
         <div class="rounded-lg overflow-hidden h-[156px] md:h-[278px]">
           <img
-            src="/img/project1.png"
+            src=""
             class="h-full w-full rounded-lg object-center"
-            alt="proyecto web 1"
+            alt="Proyecto para la empresa Lorem Ipsum"
           />
         </div>
       </div>
@@ -22,17 +26,26 @@
         </div>
       </div>
 
-      <div class="flex flex-col justify-between p-4">
+      <div class="p-6">
         <h5 class="mb-2 text-2xl font-bold text-gray-900">
-          Team Jebus Jiu-Jitsu
+          Lorem Ipsum
         </h5>
-        <p class="font-normal text-gray-700">
-          Ofrece instrucción de Jiu-Jitsu Brasileño de alto nivel a la comunidad
-          de Buenos Aires.
-          <br />
-          Desarrollado con Astro y TailwindCSS.
+        <p class="mb-4 text-gray-700">
+          Empresa en el sector industrial, como alternativa en la ejecución de
+          proyectos, que incluye servicios de gestión para las distintas
+          actividades de la industria y la construcción.
         </p>
+        <div class="flex flex-col sm:flex-row items-center">
+          <p class="mb-2 md:mb-0 mr-2 text-gray-700 font-medium">
+            Desarrollado con
+          </p>
+          <div class="flex space-x-4">
+            <Icon class="h-8 w-8" name="simple-icons:astro" />
+            <Icon class="h-8 w-8" name="simple-icons:tailwindcss" />
+            <Icon class="h-8 w-8" name="simple-icons:javascript" />
+          </div>
+        </div>
       </div>
     </a>
   </div>
-</div>
+</section>
