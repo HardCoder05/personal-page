@@ -81,7 +81,7 @@ import Button from "./ui/button.astro";
 
 <script is:inline>
   document.addEventListener(
-    "DOMContentLoaded",
+    "astro:page-load",
     () => {
       const form = document.getElementById("form");
       const result = document.getElementById("result");
@@ -111,7 +111,7 @@ import Button from "./ui/button.astro";
             let json = await response.json();
             if (response.status == 200) {
               result.classList.add("text-green-500");
-              result.innerHTML = json.message;
+              result.innerHTML = "Formulario enviado con éxito!";
             } else {
               console.log(response);
               result.classList.add("text-red-500");
