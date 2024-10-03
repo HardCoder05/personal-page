@@ -1,50 +1,59 @@
 ---
 import { Icon } from "astro-icon";
+
+const projects = [
+  {
+    title: "Delta Projekter",
+    description: "Sitio web de la empresa Delta Projekter, especializada en servicios integrales de ingeniería y desarrollo de proyectos.",
+    link: "https://www.deltaprojekter.com/",
+    image: "/Imagenes/proyecto1.webp",
+    technologies: ["astro", "tailwindcss", "javascript"],
+  },
+];
+
+const technologyIcons = {
+  astro: "simple-icons:astro",
+  tailwindcss: "simple-icons:tailwindcss",
+  javascript: "simple-icons:javascript",
+};
 ---
 
 <section class="grid grid-cols-1 gap-10 mx-auto max-w-2xl mt-16">
-  <div class="grid items-center">
-    <a
-      href="#"
-      target="_blank"
-      referrerpolicy="no-referrer"
-      class="p-6 bg-white border border-gray-300 rounded-lg shadow hover:bg-gray-100">
-      <div
-        class="relative mx-auto border-gray-900 bg-gray-900 border-[8px] rounded-t-xl h-[172px] max-w-[301px] md:h-[294px] md:max-w-[512px]">
-        <div class="rounded-lg overflow-hidden h-[156px] md:h-[278px]">
-          <img
-            src=""
-            class="h-full w-full rounded-lg object-center"
-            alt="Proyecto para la empresa Lorem Ipsum"
-          />
-        </div>
-      </div>
-      <div
-        class="relative mx-auto bg-gray-800 rounded-b-xl rounded-t-sm h-[17px] max-w-[351px] md:h-[21px] md:max-w-[597px]">
-        <div
-          class="absolute left-1/2 top-0 -translate-x-1/2 rounded-b-xl w-[56px] h-[5px] md:w-[96px] md:h-[8px] bg-white">
-        </div>
-      </div>
-
-      <div class="p-6">
-        <h5 class="mb-2 text-2xl font-bold text-gray-900">
-          Lorem Ipsum
-        </h5>
-        <p class="mb-4 text-gray-700">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec
-          dui at nunc ultricies tincidunt.
-        </p>
-        <div class="flex flex-col sm:flex-row items-center">
-          <p class="mb-2 md:mb-0 mr-2 text-gray-700 font-medium">
-            Desarrollado con
-          </p>
-          <div class="flex space-x-4">
-            <Icon class="h-8 w-8" name="simple-icons:astro" />
-            <Icon class="h-8 w-8" name="simple-icons:tailwindcss" />
-            <Icon class="h-8 w-8" name="simple-icons:javascript" />
+  {projects.map((project) => (
+    <div class="grid items-center">
+      <a
+        href= {project.link}
+        target="_blank"
+        referrerpolicy="no-referrer"
+        class="p-6 bg-white border border-gray-300 rounded-lg shadow hover:bg-gray-100"
+      >
+        <div class="relative mx-auto border-gray-900 bg-gray-900 border-[8px] rounded-t-xl h-[172px] max-w-[301px] md:h-[294px] md:max-w-[512px]">
+          <div class="rounded-lg overflow-hidden h-[156px] md:h-[278px]">
+            <img
+              src={project.image}
+              class="h-full w-full rounded-lg object-center"
+              alt={`Proyecto para la empresa ${project.title}`}
+            />
           </div>
         </div>
-      </div>
-    </a>
-  </div>
+        <div class="relative mx-auto bg-gray-800 rounded-b-xl rounded-t-sm h-[17px] max-w-[351px] md:h-[21px] md:max-w-[597px]">
+          <div class="absolute left-1/2 top-0 -translate-x-1/2 rounded-b-xl w-[56px] h-[5px] md:w-[96px] md:h-[8px] bg-white"></div>
+        </div>
+        <div class="p-6">
+          <h5 class="mb-2 text-2xl font-bold text-gray-900">{project.title}</h5>
+          <p class="mb-4 text-gray-700">{project.description}</p>
+          <div class="flex flex-col sm:flex-row items-center">
+            <p class="mb-2 md:mb-0 mr-2 text-gray-700 font-medium">
+              Desarrollado con
+            </p>
+            <div class="flex space-x-4">
+              {project.technologies.map((tech) => (
+                <Icon class="h-8 w-8" name={technologyIcons[tech]} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  ))}
 </section>
